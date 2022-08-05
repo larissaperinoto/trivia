@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Header from '../components/Header';
 import getToken from '../services/getToken';
 // import { connect } from 'react-redux';
 
@@ -11,7 +12,8 @@ class Login extends Component {
       name: '',
       email: '',
       isDisabled: true,
-      redirect: false,
+      redirectLogin: false,
+      redirectSettings: false,
     };
   }
 
@@ -30,15 +32,20 @@ class Login extends Component {
     }
   }
 
-  handleClick = async () => {
+  handleClickLogin = async () => {
     await getToken();
-    this.setState({ redirect: true });
+    this.setState({ redirectLogin: true });
+  }
+
+  handleClickSettings = () => {
+    this.setState({ redirectSettings: true });
   }
 
   render() {
-    const { name, email, isDisabled, redirect } = this.state;
+    const { name, email, isDisabled, redirectLogin, redirectSettings } = this.state;
     return (
       <>
+        <Header />
         <form>
           <label htmlFor="input-player-name">
             <input
@@ -65,14 +72,24 @@ class Login extends Component {
           <button
             data-testid="btn-play"
             type="button"
-            onClick={ this.handleClick }
+            onClick={ this.handleClickLogin }
             disabled={ isDisabled }
           >
             Play
           </button>
+          <button
+            data-testid="btn-settings"
+            type="button"
+            onClick={ this.handleClickSettings }
+          >
+            Configurações
+          </button>
         </form>
         {
-          redirect && <Redirect to="/game-trivia" />
+          redirectLogin && <Redirect to="/game-trivia" />
+        }
+        {
+          redirectSettings && <Redirect to="/settings" />
         }
       </>
     );
