@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import Header from '../components/Header';
+import { connect } from 'react-redux';
+
+import logo from '../trivia.png';
 import getToken from '../services/getToken';
-// import { connect } from 'react-redux';
+import { userLogin as userLoginAction } from '../redux/actions';
 
 class Login extends Component {
   constructor() {
@@ -33,8 +36,12 @@ class Login extends Component {
   }
 
   handleClickLogin = async () => {
+    const { userLogin } = this.props;
+    const { name, email } = this.state;
     await getToken();
     this.setState({ redirectLogin: true });
+
+    userLogin(name, email);
   }
 
   handleClickSettings = () => {
@@ -45,7 +52,7 @@ class Login extends Component {
     const { name, email, isDisabled, redirectLogin, redirectSettings } = this.state;
     return (
       <>
-        <Header />
+        <img src={ logo } className="App-logo" alt="logo" />
         <form>
           <label htmlFor="input-player-name">
             <input
@@ -96,4 +103,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  userLogin: (name, email) => dispatch(userLoginAction(name, email)),
+});
+
+Login.propTypes = {
+  userLogin: PropTypes.func,
+}.isRequired;
+
+export default connect(null, mapDispatchToProps)(Login);
