@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Header from '../components/Header';
+import Header from '../compone
+
+import { playerScore as playerScoreAction } from '../redux/actions';
 import './Game.css';
 import getQuestions from '../services/getQuestions';
 
@@ -11,6 +14,7 @@ class Game extends Component {
       data: [],
       allQuestions: [],
       correct: '',
+      // difficulty: '',
       logout: false,
       clicked: false,
       timer: 30,
@@ -32,12 +36,34 @@ class Game extends Component {
           ...questions[0].incorrect_answers].sort(() => Math.random() - number),
         correct: questions[0].correct_answer,
         logout: false,
-      }, () => this.timerCount());
+      }, () => {
+        this.timerCount();
+        this.getDifficulty(questions[0].difficulty);
+      });
     } else {
       this.setState({ logout: true });
       localStorage.clear();
     }
   }
+
+  /*  getDifficulty = (difficulty) => {
+    const hard = 3;
+    const medium = 2;
+    if (difficulty === 'hard') {
+      this.setState({ difficulty: hard });
+    } else if (difficulty === 'medium') {
+      this.setState({ difficulty: medium });
+    } else {
+      this.setState({ difficulty: 1 });
+    }
+  } */
+
+  /* handleClick = ({ target }) => {
+    const { timer, difficulty } = this.state;
+    const point = 10;
+    const score = point + (timer * difficulty);
+    console.log(score);
+  } */
 
   btnClick = () => {
     this.setState({ clicked: true });
@@ -62,8 +88,14 @@ class Game extends Component {
   }
 
   render() {
-    const { data, allQuestions, correct,
-      logout, timer, isDisabled, clicked } = this.state;
+    const { data,
+      allQuestions,
+      correct,
+      logout,
+      timer,
+      isDisabled,
+      clicked } = this.state;
+      
     return (
       <div>
         <Header />
@@ -91,6 +123,7 @@ class Game extends Component {
                 onClick={ this.btnClick }
                 className={ classe }
                 disabled={ isDisabled }
+                onClick={ (event) => this.handleClick(event) }
               >
                 {answer}
               </button>
@@ -116,4 +149,8 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapDispatchToProps = (dispatch) => ({
+  playerScore: (score) => dispatch(playerScoreAction(score)),
+});
+
+export default connect(null, mapDispatchToProps)(Game);
