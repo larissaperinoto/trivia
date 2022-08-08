@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
+import { playerScore as playerScoreAction } from '../redux/actions';
 import getQuestions from '../services/getQuestions';
 
 class Game extends Component {
@@ -37,6 +39,10 @@ class Game extends Component {
     }
   }
 
+  handleClick = () => {
+
+  }
+
   timerCount = () => {
     const functionTime = 1000;
     const getInterval = setInterval(() => {
@@ -71,6 +77,7 @@ class Game extends Component {
                 type="button"
                 data-testid={ testid }
                 disabled={ isDisabled }
+                onClick={ (event) => this.handleClick(event) }
               >
                 {answer}
               </button>
@@ -84,4 +91,8 @@ class Game extends Component {
   }
 }
 
-export default Game;
+const mapDispatchToProps = (dispatch) => ({
+  playerScore: (score) => dispatch(playerScoreAction(score)),
+});
+
+export default connect(null, mapDispatchToProps)(Game);
