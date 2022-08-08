@@ -12,6 +12,7 @@ class Game extends Component {
       data: [],
       allQuestions: [],
       correct: '',
+      // difficulty: '',
       logout: false,
       timer: 30,
       isDisabled: false,
@@ -32,16 +33,34 @@ class Game extends Component {
           ...questions[0].incorrect_answers].sort(() => Math.random() - number),
         correct: questions[0].correct_answer,
         logout: false,
-      }, () => this.timerCount());
+      }, () => {
+        this.timerCount();
+        this.getDifficulty(questions[0].difficulty);
+      });
     } else {
       this.setState({ logout: true });
       localStorage.clear();
     }
   }
 
-  handleClick = () => {
+  /*  getDifficulty = (difficulty) => {
+    const hard = 3;
+    const medium = 2;
+    if (difficulty === 'hard') {
+      this.setState({ difficulty: hard });
+    } else if (difficulty === 'medium') {
+      this.setState({ difficulty: medium });
+    } else {
+      this.setState({ difficulty: 1 });
+    }
+  } */
 
-  }
+  /* handleClick = ({ target }) => {
+    const { timer, difficulty } = this.state;
+    const point = 10;
+    const score = point + (timer * difficulty);
+    console.log(score);
+  } */
 
   timerCount = () => {
     const functionTime = 1000;
@@ -57,7 +76,12 @@ class Game extends Component {
   }
 
   render() {
-    const { data, allQuestions, correct, logout, timer, isDisabled } = this.state;
+    const { data,
+      allQuestions,
+      correct,
+      logout,
+      timer,
+      isDisabled } = this.state;
     return (
       <div>
         <Header />
