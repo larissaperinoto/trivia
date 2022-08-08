@@ -6,11 +6,11 @@ import getQuestions from '../services/getQuestions';
 class Game extends Component {
   constructor() {
     super();
-
     this.state = {
-      questions: [],
-      questionIndex: {},
-      wrongAnswers: [],
+      data: [],
+      incorrect: [],
+      allQuestions: [],
+      correct: '',
       logout: false,
     };
   }
@@ -23,9 +23,11 @@ class Game extends Component {
     const questions = await getQuestions();
     if (questions.length > 0) {
       this.setState({
-        questions,
-        questionIndex: questions[0],
-        wrongAnswers: questions[0].incorrect_answers,
+        data: questions[0],
+        allQuestions: [questions[0].correct_answer,
+          ...questions[0].incorrect_answers].sort(),
+        incorrect: [...questions[0].incorrect_answers],
+        correct: questions[0].correct_answer,
         logout: false,
       });
     } else {
@@ -35,33 +37,36 @@ class Game extends Component {
   }
 
   render() {
-    const { logout, questions, questionIndex, wrongAnswers } = this.state;
-    console.log(questionIndex);
-    console.log(questions);
-    console.log(wrongAnswers);
+    const { data, allQuestions, incorrect, correct, logout } = this.state;
+    console.log(data);
+    console.log(allQuestions);
+    console.log(incorrect);
+    console.log(correct);
     return (
       <div>
         <Header />
-        <div>
-          <p data-testid="question-category">{questionIndex.category}</p>
-          <p data-testid="question-text">{questionIndex.question}</p>
-          <div data-testid="answer-options">
-            <button
-              data-testid="correct-answer"
-              type="button"
-            >
-              {questionIndex.correct_answer}
-            </button>
-            {wrongAnswers.map((answer, i) => (
+        <p data-testid="question-category">{ data.category }</p>
+        <p data-testid="question-text">{ data.question }</p>
+        <div data-testid="answer-options">
+          { allQuestions.map((answer, index) => {
+            console.log(answer);
+            console.log(correct);
+            let testid = '';
+            if (answer === correct) {
+              testid = 'correct-answer';
+            } else {
+              testid = `wrong-answer-${index}`;
+            }
+            return (
               <button
-                key={ i }
+                key={ answer }
                 type="button"
-                data-testid={ `wrong-answer-${i}` }
+                data-testid={ testid }
               >
                 {answer}
               </button>
-            ))}
-          </div>
+            );
+          }) }
         </div>
         {logout && <Redirect to="/" />}
       </div>
