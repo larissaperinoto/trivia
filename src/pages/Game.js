@@ -43,6 +43,11 @@ class Game extends Component {
     this.setState({ clicked: true });
   }
 
+ btnNext =() => {
+   this.requestQuestions();
+   this.setState({ clicked: false });
+ }
+
   timerCount = () => {
     const functionTime = 1000;
     const getInterval = setInterval(() => {
@@ -57,7 +62,8 @@ class Game extends Component {
   }
 
   render() {
-    const { data, allQuestions, correct, logout, timer, isDisabled } = this.state;
+    const { data, allQuestions, correct,
+      logout, timer, isDisabled, clicked } = this.state;
     return (
       <div>
         <Header />
@@ -92,10 +98,22 @@ class Game extends Component {
           }) }
         </div>
         <span>{ timer }</span>
+        {clicked
+         && (
+           <label htmlFor="btn-next">
+             <button
+               type="button"
+               data-testid="btn-next"
+               onClick={ this.btnNext }
+             >
+               {'Next '}
+             </button>
+           </label>)}
+        ;
         {logout && <Redirect to="/" />}
       </div>
     );
   }
 }
 
-export default Game
+export default Game;
