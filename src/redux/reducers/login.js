@@ -18,7 +18,7 @@ const loginReducer = (state = INITIAL_STATE, action) => {
   case PLAYER_SCORE:
     return {
       ...state,
-      score: action.score,
+      score: state.score + action.score,
     };
   default:
     return state;

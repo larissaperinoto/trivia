@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Header from '../compone
+import Header from '../components/Header';
 
 import { playerScore as playerScoreAction } from '../redux/actions';
 import './Game.css';
@@ -12,33 +13,38 @@ class Game extends Component {
     super();
     this.state = {
       data: [],
-      allQuestions: [],
+      question: '',
+      category: '',
+      allAnswers: [],
       correct: '',
-      // difficulty: '',
+      difficulty: '',
       logout: false,
       clicked: false,
       timer: 30,
       isDisabled: false,
+      index: 0,
     };
   }
 
-  componentDidMount() {
-    this.requestQuestions();
+  async componentDidMount() {
+    const data = await getQuestions();
+    this.setState({ data }, () => this.requestQuestions());
   }
 
-  requestQuestions = async () => {
-    const questions = await getQuestions();
+  requestQuestions = () => {
+    const { index, data } = this.state;
     const number = 0.5;
-    if (questions.length > 0) {
+    if (data.length > 0) {
       this.setState({
-        data: questions[0],
-        allQuestions: [questions[0].correct_answer,
-          ...questions[0].incorrect_answers].sort(() => Math.random() - number),
-        correct: questions[0].correct_answer,
+        question: data[index].question,
+        category: data[index].category,
+        allAnswers: [data[index].correct_answer,
+          ...data[index].incorrect_answers].sort(() => Math.random() - number),
+        correct: data[index].correct_answer,
         logout: false,
       }, () => {
         this.timerCount();
-        this.getDifficulty(questions[0].difficulty);
+        this.getDifficulty(data[index].difficulty);
       });
     } else {
       this.setState({ logout: true });
@@ -46,7 +52,7 @@ class Game extends Component {
     }
   }
 
-  /*  getDifficulty = (difficulty) => {
+  getDifficulty = (difficulty) => {
     const hard = 3;
     const medium = 2;
     if (difficulty === 'hard') {
@@ -56,23 +62,29 @@ class Game extends Component {
     } else {
       this.setState({ difficulty: 1 });
     }
-  } */
-
-  /* handleClick = ({ target }) => {
-    const { timer, difficulty } = this.state;
-    const point = 10;
-    const score = point + (timer * difficulty);
-    console.log(score);
-  } */
-
-  btnClick = () => {
-    this.setState({ clicked: true });
   }
 
- btnNext =() => {
-   this.requestQuestions();
-   this.setState({ clicked: false });
- }
+  handleClick = ({ target: { innerHTML } }) => {
+    this.setState({ clicked: true });
+    const { correct } = this.state;
+    if (correct === innerHTML) {
+      const { timer, difficulty } = this.state;
+      const { playerScore } = this.props;
+      const point = 10;
+      const score = point + (timer * difficulty);
+      playerScore(score);
+    }
+  }
+
+  btnNext = () => {
+    const maxQuestion = 5;
+    this.setState((prevState) => ({
+      clicked: false,
+      index: prevState.index === maxQuestion ? 0 : (prevState.index + 1),
+    }), () => {
+      this.requestQuestions();
+    });
+  }
 
   timerCount = () => {
     const functionTime = 1000;
@@ -88,21 +100,22 @@ class Game extends Component {
   }
 
   render() {
-    const { data,
-      allQuestions,
+    const { question,
+      category,
+      allAnswers,
       correct,
       logout,
       timer,
       isDisabled,
       clicked } = this.state;
-      
+
     return (
       <div>
         <Header />
-        <p data-testid="question-category">{ data.category }</p>
-        <p data-testid="question-text">{ data.question }</p>
+        <p data-testid="question-category">{ category }</p>
+        <p data-testid="question-text">{ question }</p>
         <div data-testid="answer-options">
-          { allQuestions.map((answer, index) => {
+          { allAnswers.map((answer, index) => {
             let testid = '';
             if (answer === correct) {
               testid = 'correct-answer';
@@ -120,7 +133,6 @@ class Game extends Component {
                 key={ answer }
                 type="button"
                 data-testid={ testid }
-                onClick={ this.btnClick }
                 className={ classe }
                 disabled={ isDisabled }
                 onClick={ (event) => this.handleClick(event) }
@@ -152,5 +164,9 @@ class Game extends Component {
 const mapDispatchToProps = (dispatch) => ({
   playerScore: (score) => dispatch(playerScoreAction(score)),
 });
+
+Game.propTypes = {
+  playerScore: PropTypes.func,
+}.isRequired;
 
 export default connect(null, mapDispatchToProps)(Game);
