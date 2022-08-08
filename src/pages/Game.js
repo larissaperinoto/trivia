@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
+import './Game.css';
 import getQuestions from '../services/getQuestions';
 
 class Game extends Component {
@@ -11,6 +12,7 @@ class Game extends Component {
       allQuestions: [],
       correct: '',
       logout: false,
+      clicked: false,
     };
   }
 
@@ -35,8 +37,12 @@ class Game extends Component {
     }
   }
 
+  btnClick = () => {
+    this.setState({ clicked: true });
+  }
+
   render() {
-    const { data, allQuestions, correct, logout } = this.state;
+    const { data, allQuestions, correct, logout, clicked } = this.state;
     return (
       <div>
         <Header />
@@ -50,11 +56,19 @@ class Game extends Component {
             } else {
               testid = `wrong-answer-${index}`;
             }
+            let classe = '';
+            if (clicked) {
+              if (testid === 'correct-answer') {
+                classe = 'correctAnswer';
+              } else { classe = 'incorrectAnswer'; }
+            }
             return (
               <button
                 key={ answer }
                 type="button"
                 data-testid={ testid }
+                onClick={ this.btnClick }
+                className={ classe }
               >
                 {answer}
               </button>
