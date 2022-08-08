@@ -13,6 +13,8 @@ class Game extends Component {
       correct: '',
       logout: false,
       clicked: false,
+      timer: 30,
+      isDisabled: false,
     };
   }
 
@@ -30,7 +32,7 @@ class Game extends Component {
           ...questions[0].incorrect_answers].sort(() => Math.random() - number),
         correct: questions[0].correct_answer,
         logout: false,
-      });
+      }, () => this.timerCount());
     } else {
       this.setState({ logout: true });
       localStorage.clear();
@@ -41,8 +43,21 @@ class Game extends Component {
     this.setState({ clicked: true });
   }
 
+  timerCount = () => {
+    const functionTime = 1000;
+    const getInterval = setInterval(() => {
+      const { timer } = this.state;
+      this.setState({ timer: (timer - 1) }, () => {
+        if (timer === 1) {
+          clearInterval(getInterval);
+          this.setState({ isDisabled: true });
+        }
+      });
+    }, functionTime);
+  }
+
   render() {
-    const { data, allQuestions, correct, logout, clicked } = this.state;
+    const { data, allQuestions, correct, logout, timer, isDisabled } = this.state;
     return (
       <div>
         <Header />
@@ -69,16 +84,18 @@ class Game extends Component {
                 data-testid={ testid }
                 onClick={ this.btnClick }
                 className={ classe }
+                disabled={ isDisabled }
               >
                 {answer}
               </button>
             );
           }) }
         </div>
+        <span>{ timer }</span>
         {logout && <Redirect to="/" />}
       </div>
     );
   }
 }
 
-export default Game;
+export default Game
