@@ -38,18 +38,7 @@ describe('Testes tela de login', () => {
         userEvent.click(play);
         await screen.findByText('Fulano');
         expect(history.location.pathname).toBe('/game-trivia');
-        // const test = await () => {
-        //     setTimeout(() => console.log(store.getState()), 1000)
-        // };
-        // console.log(store.getState());
-        // expect(store.getState().name).toBe('Fulano')
 
-
-       
-        // const name =  await () => (setTimeout(() => {
-        //     console.log(store.getState())
-        //     expect(store.getState().name).toBe('Fulano');
-        // }, 10));
 
     })
 });
