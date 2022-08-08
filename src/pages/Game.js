@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Header from '../components/Header';
+import Header from '../compone
+
 import { playerScore as playerScoreAction } from '../redux/actions';
+import './Game.css';
 import getQuestions from '../services/getQuestions';
 
 class Game extends Component {
@@ -14,6 +16,7 @@ class Game extends Component {
       correct: '',
       // difficulty: '',
       logout: false,
+      clicked: false,
       timer: 30,
       isDisabled: false,
     };
@@ -62,6 +65,15 @@ class Game extends Component {
     console.log(score);
   } */
 
+  btnClick = () => {
+    this.setState({ clicked: true });
+  }
+
+ btnNext =() => {
+   this.requestQuestions();
+   this.setState({ clicked: false });
+ }
+
   timerCount = () => {
     const functionTime = 1000;
     const getInterval = setInterval(() => {
@@ -81,7 +93,9 @@ class Game extends Component {
       correct,
       logout,
       timer,
-      isDisabled } = this.state;
+      isDisabled,
+      clicked } = this.state;
+      
     return (
       <div>
         <Header />
@@ -95,11 +109,19 @@ class Game extends Component {
             } else {
               testid = `wrong-answer-${index}`;
             }
+            let classe = '';
+            if (clicked) {
+              if (testid === 'correct-answer') {
+                classe = 'correctAnswer';
+              } else { classe = 'incorrectAnswer'; }
+            }
             return (
               <button
                 key={ answer }
                 type="button"
                 data-testid={ testid }
+                onClick={ this.btnClick }
+                className={ classe }
                 disabled={ isDisabled }
                 onClick={ (event) => this.handleClick(event) }
               >
@@ -109,6 +131,18 @@ class Game extends Component {
           }) }
         </div>
         <span>{ timer }</span>
+        {clicked
+         && (
+           <label htmlFor="btn-next">
+             <button
+               type="button"
+               data-testid="btn-next"
+               onClick={ this.btnNext }
+             >
+               {'Next '}
+             </button>
+           </label>)}
+        ;
         {logout && <Redirect to="/" />}
       </div>
     );
