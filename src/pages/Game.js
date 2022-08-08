@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
+import './Game.css';
 import getQuestions from '../services/getQuestions';
 
 class Game extends Component {
@@ -11,6 +12,7 @@ class Game extends Component {
       allQuestions: [],
       correct: '',
       logout: false,
+      clicked: false,
       timer: 30,
       isDisabled: false,
     };
@@ -35,6 +37,10 @@ class Game extends Component {
       this.setState({ logout: true });
       localStorage.clear();
     }
+  }
+
+  btnClick = () => {
+    this.setState({ clicked: true });
   }
 
   timerCount = () => {
@@ -65,11 +71,19 @@ class Game extends Component {
             } else {
               testid = `wrong-answer-${index}`;
             }
+            let classe = '';
+            if (clicked) {
+              if (testid === 'correct-answer') {
+                classe = 'correctAnswer';
+              } else { classe = 'incorrectAnswer'; }
+            }
             return (
               <button
                 key={ answer }
                 type="button"
                 data-testid={ testid }
+                onClick={ this.btnClick }
+                className={ classe }
                 disabled={ isDisabled }
               >
                 {answer}
@@ -84,4 +98,4 @@ class Game extends Component {
   }
 }
 
-export default Game;
+export default Game
