@@ -8,7 +8,6 @@ class Game extends Component {
     super();
     this.state = {
       data: [],
-      incorrect: [],
       allQuestions: [],
       correct: '',
       logout: false,
@@ -21,12 +20,12 @@ class Game extends Component {
 
   requestQuestions = async () => {
     const questions = await getQuestions();
+    const number = 0.5;
     if (questions.length > 0) {
       this.setState({
         data: questions[0],
         allQuestions: [questions[0].correct_answer,
-          ...questions[0].incorrect_answers].sort(),
-        incorrect: [...questions[0].incorrect_answers],
+          ...questions[0].incorrect_answers].sort(() => Math.random() - number),
         correct: questions[0].correct_answer,
         logout: false,
       });
@@ -37,11 +36,7 @@ class Game extends Component {
   }
 
   render() {
-    const { data, allQuestions, incorrect, correct, logout } = this.state;
-    console.log(data);
-    console.log(allQuestions);
-    console.log(incorrect);
-    console.log(correct);
+    const { data, allQuestions, correct, logout } = this.state;
     return (
       <div>
         <Header />
@@ -49,8 +44,6 @@ class Game extends Component {
         <p data-testid="question-text">{ data.question }</p>
         <div data-testid="answer-options">
           { allQuestions.map((answer, index) => {
-            console.log(answer);
-            console.log(correct);
             let testid = '';
             if (answer === correct) {
               testid = 'correct-answer';
