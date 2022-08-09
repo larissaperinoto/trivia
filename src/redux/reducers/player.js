@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   gravatarEmail: '',
 };
 
-const loginReducer = (state = INITIAL_STATE, action) => {
+const player = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case USER_LOGIN:
     return {
@@ -18,11 +18,11 @@ const loginReducer = (state = INITIAL_STATE, action) => {
   case PLAYER_SCORE:
     return {
       ...state,
-      score: action.score,
+      score: state.score + action.score,
     };
   default:
     return state;
   }
 };
 
-export default loginReducer;
+export default player;
