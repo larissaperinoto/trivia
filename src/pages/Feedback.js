@@ -31,6 +31,7 @@ class Feedback extends Component {
             >
               { assertions }
             </span>
+            {' '}
           </p>
           <p>
             Sua pontuação é:
