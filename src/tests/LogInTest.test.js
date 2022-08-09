@@ -1,8 +1,8 @@
 import React from 'react';
-import App from '../../App';
+import App from '../App';
 
 
-import renderWithRouterAndRedux from "./renderWithRouterAndRedux";
+import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
 import { getByTestId, getByText, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
