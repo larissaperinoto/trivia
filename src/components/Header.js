@@ -8,6 +8,7 @@ import './Header.css';
 class Header extends Component {
   render() {
     const { name, email, score } = this.props;
+    console.log(name, email);
     return (
       <header className="App">
         <img src={ logo } className="App-logo" alt="logo" />
@@ -24,9 +25,9 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  name: state.loginReducer.name,
-  email: state.loginReducer.gravatarEmail,
-  score: state.loginReducer.score,
+  name: state.player.name,
+  email: state.player.gravatarEmail,
+  score: state.player.score,
 });
 
 Header.propTypes = {

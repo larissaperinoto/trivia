@@ -23,7 +23,6 @@ class Game extends Component {
       timer: 30,
       isDisabled: false,
       index: 0,
-      stopTimer: false,
     };
   }
 
@@ -83,24 +82,22 @@ class Game extends Component {
     this.setState((prevState) => ({
       clicked: false,
       index: prevState.index === maxQuestion ? 0 : (prevState.index + 1),
-      stopTimer: true,
     }), () => {
       this.requestQuestions();
     });
   }
 
   timerCount = () => {
-    const { stopTimer } = this.state;
     const functionTime = 1000;
-    const { timer } = this.state;
     const getInterval = setInterval(() => {
-      this.setState({ timer: (timer - 1) });
+      const { timer } = this.state;
+      this.setState({ timer: (timer - 1) }, () => {
+        if (timer === 1) {
+          clearInterval(getInterval);
+          this.setState({ isDisabled: true });
+        }
+      });
     }, functionTime);
-
-    if (timer === 1 || stopTimer) {
-      clearInterval(getInterval);
-      this.setState({ isDisabled: true, stopTimer: false });
-    }
   }
 
   render() {
