@@ -1,26 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 
-class Feedback extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      redirect: false,
-    };
-  }
-
+class Feedback extends Component {
   handleClick = () => {
-    this.setState({ redirect: true });
+    const { history } = this.props;
+    history.push('/');
   }
 
   render() {
     const { assertions, score } = this.props;
-    const { redirect } = this.state;
     const spots = 3;
     return (
       <>
@@ -58,7 +50,6 @@ class Feedback extends React.Component {
         >
           Play Again
         </button>
-        { redirect && <Redirect to="/" /> }
         <Link to="ranking">
           <button
             type="button"
