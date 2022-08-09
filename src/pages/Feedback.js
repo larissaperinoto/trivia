@@ -28,4 +28,5 @@ Feedback.propTypes = {
   assertions: PropTypes.string,
 }.isRequired;
 
+
 export default connect(mapStateToProps)(Feedback);
