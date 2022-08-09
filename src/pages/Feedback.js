@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
@@ -59,6 +59,14 @@ class Feedback extends React.Component {
           Play Again
         </button>
         { redirect && <Redirect to="/" /> }
+        <Link to="ranking">
+          <button
+            type="button"
+            data-testid="btn-ranking"
+          >
+            Ranking
+          </button>
+        </Link>
       </>
     );
   }
