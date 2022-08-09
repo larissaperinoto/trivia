@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 
-import { playerScore as playerScoreAction } from '../redux/actions';
+import {
+  playerScore as playerScoreAction,
+  playerAssertions as playerAssertionsAction } from '../redux/actions';
 import './Game.css';
 import getQuestions from '../services/getQuestions';
 
-const maxQuestion = 5;
+const maxQuestion = 4;
 
 class Game extends Component {
   constructor() {
@@ -33,10 +35,14 @@ class Game extends Component {
     this.setState({ data }, () => this.requestQuestions());
   }
 
+  componentWillUnmount() {
+    this.timerCount();
+  }
+
   requestQuestions = () => {
     const { index, data } = this.state;
     const number = 0.5;
-    if (data.length > 0) {
+    if (data.length > 0 && index <= maxQuestion) {
       this.setState({
         question: data[index].question,
         category: data[index].category,
@@ -72,10 +78,11 @@ class Game extends Component {
     const { correct, timerId } = this.state;
     if (correct === innerHTML) {
       const { timer, difficulty } = this.state;
-      const { playerScore } = this.props;
+      const { playerScore, playerAssertions } = this.props;
       const point = 10;
       const score = point + (timer * difficulty);
       playerScore(score);
+      playerAssertions();
     }
     clearInterval(timerId);
   }
@@ -83,7 +90,7 @@ class Game extends Component {
   btnNext = () => {
     this.setState((prevState) => ({
       clicked: false,
-      index: prevState.index === maxQuestion ? 0 : (prevState.index + 1),
+      index: prevState.index <= maxQuestion ? (prevState.index + 1) : 0,
       timer: 30,
     }), () => {
       this.requestQuestions();
@@ -163,7 +170,7 @@ class Game extends Component {
            </label>)}
 
         {logout && <Redirect to="/" />}
-        { index === maxQuestion && <Redirect to="/feedback" /> }
+        { index > maxQuestion && <Redirect to="/feedback" /> }
       </div>
     );
   }
@@ -171,6 +178,7 @@ class Game extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   playerScore: (score) => dispatch(playerScoreAction(score)),
+  playerAssertions: () => dispatch(playerAssertionsAction()),
 });
 
 Game.propTypes = {
