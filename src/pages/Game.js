@@ -8,6 +8,8 @@ import { playerScore as playerScoreAction } from '../redux/actions';
 import './Game.css';
 import getQuestions from '../services/getQuestions';
 
+const maxQuestion = 5;
+
 class Game extends Component {
   constructor() {
     super();
@@ -78,7 +80,6 @@ class Game extends Component {
   }
 
   btnNext = () => {
-    const maxQuestion = 5;
     this.setState((prevState) => ({
       clicked: false,
       index: prevState.index === maxQuestion ? 0 : (prevState.index + 1),
@@ -108,20 +109,20 @@ class Game extends Component {
       logout,
       timer,
       isDisabled,
-      clicked } = this.state;
-
+      clicked,
+      index } = this.state;
     return (
       <div>
         <Header />
         <p data-testid="question-category">{ category }</p>
         <p data-testid="question-text">{ question }</p>
         <div data-testid="answer-options">
-          { allAnswers.map((answer, index) => {
+          { allAnswers.map((answer, i) => {
             let testid = '';
             if (answer === correct) {
               testid = 'correct-answer';
             } else {
-              testid = `wrong-answer-${index}`;
+              testid = `wrong-answer-${i}`;
             }
             let classe = '';
             if (clicked) {
@@ -160,6 +161,7 @@ class Game extends Component {
            </label>)}
 
         {logout && <Redirect to="/" />}
+        { index === maxQuestion && <Redirect to="/feedback" /> }
       </div>
     );
   }
