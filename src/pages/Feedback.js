@@ -39,6 +39,7 @@ class Feedback extends React.Component {
             >
               { assertions }
             </span>
+            {' '}
           </p>
           <p>
             Sua pontuação é:
