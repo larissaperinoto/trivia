@@ -23,6 +23,7 @@ class Game extends Component {
       timer: 30,
       isDisabled: false,
       index: 0,
+      stopTimer: false,
     };
   }
 
@@ -42,6 +43,7 @@ class Game extends Component {
           ...data[index].incorrect_answers].sort(() => Math.random() - number),
         correct: data[index].correct_answer,
         logout: false,
+        isDisabled: false,
       }, () => {
         this.timerCount();
         this.getDifficulty(data[index].difficulty);
@@ -81,22 +83,24 @@ class Game extends Component {
     this.setState((prevState) => ({
       clicked: false,
       index: prevState.index === maxQuestion ? 0 : (prevState.index + 1),
+      stopTimer: true,
     }), () => {
       this.requestQuestions();
     });
   }
 
   timerCount = () => {
+    const { stopTimer } = this.state;
     const functionTime = 1000;
+    const { timer } = this.state;
     const getInterval = setInterval(() => {
-      const { timer } = this.state;
-      this.setState({ timer: (timer - 1) }, () => {
-        if (timer === 1) {
-          clearInterval(getInterval);
-          this.setState({ isDisabled: true });
-        }
-      });
+      this.setState({ timer: (timer - 1) });
     }, functionTime);
+
+    if (timer === 1 || stopTimer) {
+      clearInterval(getInterval);
+      this.setState({ isDisabled: true, stopTimer: false });
+    }
   }
 
   render() {
@@ -142,10 +146,10 @@ class Game extends Component {
             );
           }) }
         </div>
-        {/* <span>{ timer }</span> */}
+        <span>{ timer }</span>
         {/* Alternativa, faz timer sumir quando tempo acaba ou resposta é selecionada */}
 
-        {(!isDisabled && !clicked) && (<span>{ timer }</span>)}
+        {/* {(!isDisabled && !clicked) && (<span>{ timer }</span>)} */}
         {(clicked || isDisabled)
          && (
            <label htmlFor="btn-next">
