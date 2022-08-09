@@ -92,7 +92,6 @@ class Game extends Component {
   timerCount = () => {
     const functionTime = 1000;
     const getInterval = setInterval(() => {
-      console.log('test');
       const { timer } = this.state;
       this.setState({ timer: (timer - 1), timerId: getInterval }, () => {
         if (timer <= 1) {
