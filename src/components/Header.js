@@ -8,7 +8,6 @@ import './Header.css';
 class Header extends Component {
   render() {
     const { name, email, score } = this.props;
-    console.log(name, email);
     return (
       <header className="App">
         <img src={ logo } className="App-logo" alt="logo" />
