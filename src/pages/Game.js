@@ -142,8 +142,11 @@ class Game extends Component {
             );
           }) }
         </div>
-        <span>{ timer }</span>
-        {clicked
+        {/* <span>{ timer }</span> */}
+        {/* Alternativa, faz timer sumir quando tempo acaba ou resposta é selecionada */}
+
+        {(!isDisabled && !clicked) && (<span>{ timer }</span>)}
+        {(clicked || isDisabled)
          && (
            <label htmlFor="btn-next">
              <button
@@ -154,7 +157,7 @@ class Game extends Component {
                {'Next '}
              </button>
            </label>)}
-        ;
+
         {logout && <Redirect to="/" />}
       </div>
     );
