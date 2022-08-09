@@ -69,7 +69,7 @@ class Game extends Component {
 
   handleClick = ({ target: { innerHTML } }) => {
     this.setState({ clicked: true });
-    const { correct } = this.state;
+    const { correct, timerId } = this.state;
     if (correct === innerHTML) {
       const { timer, difficulty } = this.state;
       const { playerScore } = this.props;
@@ -77,12 +77,14 @@ class Game extends Component {
       const score = point + (timer * difficulty);
       playerScore(score);
     }
+    clearInterval(timerId);
   }
 
   btnNext = () => {
     this.setState((prevState) => ({
       clicked: false,
       index: prevState.index === maxQuestion ? 0 : (prevState.index + 1),
+      timer: 30,
     }), () => {
       this.requestQuestions();
     });
@@ -92,8 +94,8 @@ class Game extends Component {
     const functionTime = 1000;
     const getInterval = setInterval(() => {
       const { timer } = this.state;
-      this.setState({ timer: (timer - 1) }, () => {
-        if (timer === 1) {
+      this.setState({ timer: (timer - 1), timerId: getInterval }, () => {
+        if (timer <= 1) {
           clearInterval(getInterval);
           this.setState({ isDisabled: true });
         }
@@ -144,10 +146,10 @@ class Game extends Component {
             );
           }) }
         </div>
-        <span>{ timer }</span>
+        {/* <span>{ timer }</span> */}
         {/* Alternativa, faz timer sumir quando tempo acaba ou resposta é selecionada */}
 
-        {/* {(!isDisabled && !clicked) && (<span>{ timer }</span>)} */}
+        {(!isDisabled && !clicked) && (<span>{ timer }</span>)}
         {(clicked || isDisabled)
          && (
            <label htmlFor="btn-next">
