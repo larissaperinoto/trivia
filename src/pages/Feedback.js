@@ -19,7 +19,7 @@ class Feedback extends React.Component {
   }
 
   render() {
-    const { assertions } = this.props;
+    const { assertions, score } = this.props;
     const { redirect } = this.state;
     const spots = 3;
     return (
@@ -29,6 +29,26 @@ class Feedback extends React.Component {
           {assertions < spots
             ? <span>Could be better...</span>
             : <span>Well Done!</span>}
+        </div>
+        <div>
+          <p>
+            Número de acertos:
+            {' '}
+            <span
+              data-testid="feedback-total-question"
+            >
+              { assertions }
+            </span>
+          </p>
+          <p>
+            Sua pontuação é:
+            {' '}
+            <span
+              data-testid="feedback-total-score"
+            >
+              { score }
+            </span>
+          </p>
         </div>
         <button
           type="button"
@@ -44,7 +64,7 @@ class Feedback extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  assertions: state.player.assertions,
+  ...state.player,
 });
 
 Feedback.propTypes = {
