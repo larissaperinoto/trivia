@@ -6,9 +6,33 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 class Feedback extends Component {
+  componentDidMount() {
+    this.handleLocalStorage();
+  }
+
   handleClick = () => {
     const { history } = this.props;
     history.push('/');
+  }
+
+  handleLocalStorage = () => {
+    const { name, assertions, score, gravatarEmail } = this.props;
+    const playerData = [{
+      name,
+      assertions,
+      score,
+      gravatarEmail,
+    }];
+    const oldLocasStorage = localStorage.getItem('ranking');
+    const oldParsed = JSON.parse(oldLocasStorage);
+    if (oldParsed && name !== '') {
+      const newLocalStorage = [...oldParsed, ...playerData];
+      const newStingfied = JSON.stringify(newLocalStorage);
+      localStorage.setItem('ranking', newStingfied);
+    } else if (name !== '') {
+      const newStingfied = JSON.stringify(playerData);
+      localStorage.setItem('ranking', newStingfied);
+    }
   }
 
   render() {

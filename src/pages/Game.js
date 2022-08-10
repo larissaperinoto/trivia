@@ -57,7 +57,7 @@ class Game extends Component {
       });
     } else {
       this.setState({ logout: true });
-      localStorage.clear();
+      localStorage.removeItem('token');
     }
   }
 

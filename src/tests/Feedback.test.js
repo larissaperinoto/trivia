@@ -3,8 +3,8 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Feedback from '../pages/Feedback';
-
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
+import App from '../App';
 
 describe('Verifica a renderização do componente Feedback', () => {
   test('Verifica se o Header está sendo renderizado na página', () => {
@@ -53,12 +53,12 @@ describe('Verifica a renderização do componente Feedback', () => {
   });
 
   test('verifica se o botão Play Again é renderizado', () => {
-    const { history } = renderWithRouterAndRedux(<Feedback />);
+    const { history } = renderWithRouterAndRedux(<App />, {}, '/feedback');
 
     const buttonPlayAgain = screen.getByRole("button", { name: /play again/i });
     expect(buttonPlayAgain).toBeInTheDocument();
     userEvent.click(buttonPlayAgain);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/');
+    expect(screen.getByRole("button", { name: /play/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("textbox").length).toBe(2);
   });
 })
