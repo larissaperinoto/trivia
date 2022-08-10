@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+}
+
+.login-area-geral {
+  align-items: center;
+  background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.login-area {
+  background-color: rgba(59, 59, 59, 0.575);
+  border-radius: 1.5em;
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.input-area {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-login-name, .input-login-email {
+  color: rgb(34, 34, 34);
+  margin-bottom: 5px;
+  text-align: center;
+  width: 215px;
+}
+
+.input-btn-play, .input-btn-settings {
+  color: rgb(46, 46, 46);
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 6px;
+  margin-top: 2px;
+  width: 108px;
+}

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import logo from '../trivia.png';
 import getToken from '../services/getToken';
 import { userLogin as userLoginAction } from '../redux/actions';
+import './Login.css';
 
 class Login extends Component {
   constructor() {
@@ -51,14 +52,15 @@ class Login extends Component {
   render() {
     const { name, email, isDisabled, redirectLogin, redirectSettings } = this.state;
     return (
-      <>
-        <img src={ logo } className="App-logo" alt="logo" />
-        <form>
+      <div className="login-area-geral">
+        <div className="login-area">
+          <img src={ logo } className="App-logo" alt="logo" />
+        <form className="input-area">
           <label htmlFor="input-player-name">
             <input
+              className="input-login-name"
               data-testid="input-player-name"
               type="text"
-              id="input-player-name"
               placeholder="Nome"
               name="name"
               onChange={ (event) => this.handleChange(event) }
@@ -67,30 +69,34 @@ class Login extends Component {
           </label>
           <label htmlFor="input-gravatar-email">
             <input
+              className="input-login-email"
               data-testid="input-gravatar-email"
               type="email"
-              id="input-gravatar-email"
               placeholder="Email"
               name="email"
               onChange={ (event) => this.handleChange(event) }
               value={ email }
-            />
+              />
           </label>
-          <button
-            data-testid="btn-play"
-            type="button"
-            onClick={ this.handleClickLogin }
-            disabled={ isDisabled }
-          >
-            Play
-          </button>
-          <button
-            data-testid="btn-settings"
-            type="button"
-            onClick={ this.handleClickSettings }
-          >
-            Configurações
-          </button>
+          <div className="btn-area">
+            <button
+              className="input-btn-play"
+              data-testid="btn-play"
+              type="button"
+              onClick={ this.handleClickLogin }
+              disabled={ isDisabled }
+              >
+              Play
+            </button>
+            <button
+              className="input-btn-settings"
+              data-testid="btn-settings"
+              type="button"
+              onClick={ this.handleClickSettings }
+              >
+              Configurações
+            </button>
+          </div>
         </form>
         {
           redirectLogin && <Redirect to="/game-trivia" />
@@ -98,7 +104,8 @@ class Login extends Component {
         {
           redirectSettings && <Redirect to="/settings" />
         }
-      </>
+        </div>
+      </div>
     );
   }
 }

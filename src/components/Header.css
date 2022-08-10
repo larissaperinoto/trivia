@@ -1,46 +1,14 @@
-body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 15vmin;
+  justify-self: center;
   pointer-events: none;
-}
-
-.red-border {
-  border: 1px solid red;
-}
-
-.green-border {
-  border: 1px solid green;
 }
 
 @media ( prefers-reduced-motion : no-preference ) {
 
   .App-logo {
-    animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    animation: shake infinite 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
-}
-
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes shake {
@@ -60,4 +28,21 @@ body {
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.header-player {
+  align-items: center;
+  display: flex;
+  justify-self: left;
+}
+
+.header-player-name, .header-player-score {
+  color: rgb(34, 34, 34);
+  margin-right: 6px;
 }
