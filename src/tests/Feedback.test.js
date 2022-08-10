@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Feedback from '../pages/Feedback';
-
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 
 describe('Verifica a renderização do componente Feedback', () => {
