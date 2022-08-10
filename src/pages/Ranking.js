@@ -11,7 +11,6 @@ class Ranking extends React.Component {
   }
 
   render() {
-    const { name, score, assertions } = this.props;
     const localStorageData = localStorage.getItem('ranking');
     const rankingList = localStorageData && localStorageData !== ''
     && JSON.parse(localStorageData)
@@ -19,7 +18,6 @@ class Ranking extends React.Component {
     return (
       <div>
         <h1 data-testid="ranking-title">Ranking</h1>
-        <p>{ `${name} ---------------------- Acertos${assertions}/${score}` }</p>
         <button
           type="button"
           data-testid="btn-go-home"

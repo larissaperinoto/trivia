@@ -16,20 +16,32 @@ describe('Verifica a renderização da página de Ranking', () => {
       }
     }
 
-    renderWithRouterAndRedux(<App />, initialStateMock, '/ranking');
+    const initialStateMock2 = {
+        name: 'Maria',
+        assertions: 4,
+        score: 350,
+        gravatarEmail: 'maria@mail.com',
+    }
+
+    localStorage.setItem('ranking', JSON.stringify([initialStateMock2]));
+    renderWithRouterAndRedux(<App />, initialStateMock, '/feedback');
+
+    userEvent.click(screen.getByRole('button', { name: /Ranking/i}));
 
     expect(screen.getByRole("heading", { name: /ranking/i })).toBeInTheDocument();
 
-    const playerName = screen.getByTestId(/player-name-/i);
-    expect(playerName).toBeInTheDocument();
-    expect(playerName.innerHTML).toBe('Jorge');
+    const playerName = screen.getAllByTestId(/player-name-/i);
+    expect(playerName.length).toBe(2);
+    expect(playerName[0].innerHTML).toBe('Maria');
+    expect(playerName[1].innerHTML).toBe('Jorge');
 
     const playerScore = screen.getAllByTestId(/player-score-/i);
-    expect(playerScore).toBeInTheDocument();
-    expect(playerScore.innerHTML).toBe('240');
+    expect(playerScore[0].innerHTML).toBe('350');
+    expect(playerScore[1].innerHTML).toBe('240');
 
     const button = screen.getByRole("button", { name: /início/i });
     expect(button).toBeInTheDocument();
+    
 
     userEvent.click(button);
 
