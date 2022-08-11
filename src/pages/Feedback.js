@@ -1,27 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import './Game.css';
 
-class Feedback extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      redirect: false,
-    };
+class Feedback extends Component {
+  componentDidMount() {
+    this.handleLocalStorage();
   }
 
   handleClick = () => {
-    this.setState({ redirect: true });
+    const { history } = this.props;
+    history.push('/');
+  }
+
+  handleLocalStorage = () => {
+    const { name, assertions, score, gravatarEmail } = this.props;
+    const playerData = [{
+      name,
+      assertions,
+      score,
+      gravatarEmail,
+    }];
+    const oldLocasStorage = localStorage.getItem('ranking');
+    const oldParsed = JSON.parse(oldLocasStorage);
+    if (oldParsed && name !== '') {
+      const newLocalStorage = [...oldParsed, ...playerData];
+      const newStingfied = JSON.stringify(newLocalStorage);
+      localStorage.setItem('ranking', newStingfied);
+    } else if (name !== '') {
+      const newStingfied = JSON.stringify(playerData);
+      localStorage.setItem('ranking', newStingfied);
+    }
   }
 
   render() {
-    const { assertions } = this.props;
-    const { redirect } = this.state;
+    const { assertions, score } = this.props;
     const spots = 3;
     return (
       <>
@@ -32,33 +48,51 @@ class Feedback extends React.Component {
               ? <p className="feedback">Could be better...</p>
               : <p className="feedback">Well Done!</p>}
           </div>
-          <div className="feedback-btns">
+
+          <div>
+            <p>
+              Número de acertos:
+              {' '}
+              <span
+                data-testid="feedback-total-question"
+              >
+                { assertions }
+              </span>
+              {' '}
+            </p>
+            <p>
+              Sua pontuação é:
+              {' '}
+              <span
+                data-testid="feedback-total-score"
+              >
+                { score }
+              </span>
+            </p>
+          </div>
+          <button
+            type="button"
+            id="btn-play-again"
+            data-testid="btn-play-again"
+            onClick={ () => this.handleClick() }
+          >
+            Play Again
+          </button>
+          <Link to="ranking">
             <button
               type="button"
-              className="btn-play-again"
-              data-testid="btn-play-again"
-              onClick={ () => this.handleClick() }
+              data-testid="btn-ranking"
             >
-              Play Again
+              Ranking
             </button>
-            { redirect && <Redirect to="/" /> }
-            <Link to="ranking">
-              <button
-                type="button"
-                data-testid="btn-ranking"
-                className="btn-ranking"
-              >
-                Ranking
-              </button>
-            </Link>
-          </div>
+          </Link>
         </div>
       </>
     );
   }
 }
 const mapStateToProps = (state) => ({
-  assertions: state.player.assertions,
+  ...state.player,
 });
 
 Feedback.propTypes = {
