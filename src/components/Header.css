@@ -21,9 +21,10 @@
   display: flex;
   justify-content: space-around;
   margin-right: 5px;
+  max-width: fit-content;
+  min-width: 200px;
   padding: 5px;
   padding-right: 16px;
-  width: 200px;
 }
 
 .area-header-player {

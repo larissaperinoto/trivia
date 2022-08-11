@@ -24,11 +24,18 @@
   border-radius: 1em;
   display: flex;
   flex-flow: row wrap;
-  height: 60%;
+  height: 70%;
   justify-content: space-around;
   padding: 20px;
   text-align: center;
   width: 45%;
+}
+
+.question-area {
+  display: flex;
+  flex-direction: column;
+  max-height: 60%;
+  width: 90%;
 }
 
 button {
@@ -44,7 +51,7 @@ button {
 .right-elements {
   align-items: center;
   text-align: center;
-  width: 15%;
+  width: 23%;
 }
 
 /* Botões do fedback junto */
@@ -61,18 +68,24 @@ button .btn-next, .btn-ranking, .btn-play-again {
 .feedback-area {
   align-items: center;
   background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
-  background-repeat: no-repeat;
+  background-repeat: round;
   background-size: 100%;
   display: flex;
   flex-direction: column;
-  height: 64.5vh;
-  padding-top: 100px;
+  height: 74.6vh;
+  padding-top: 50px;
 }
 
 .feedback {
+  text-align: center;
+}
+
+.details-feedback {
   background-color: #0d577485;
   border-radius: 1em;
   color: white;
+  max-width: 60%;
+  min-width: 35%;
   padding: 15px;
-  text-align: center;
+  text-align: left;
 }

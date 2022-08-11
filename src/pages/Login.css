@@ -39,7 +39,7 @@ body {
 .login-area-geral {
   align-items: center;
   background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
-  background-repeat: no-repeat;
+  background-repeat: round;
   background-size: 100%;
   display: flex;
   flex-direction: column;
@@ -75,6 +75,10 @@ body {
   width: 215px;
 }
 
+.btn-area {
+  display: flex;
+  width: 100%;
+}
 
 .input-btn-play, .btn-play, .input-btn-settings {
   border: 0.16em solid rgba(38, 99, 139, 0.966);

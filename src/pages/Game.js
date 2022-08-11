@@ -125,8 +125,10 @@ class Game extends Component {
         <Header />
         <div className="game-area">
           <div className="area-answers" data-testid="answer-options">
-            <p data-testid="question-category">{ category }</p>
-            <p data-testid="question-text">{ question }</p>
+            <div className="question-area">
+              <p data-testid="question-category">{ category }</p>
+              <p data-testid="question-text">{ question }</p>
+            </div>
             { allAnswers.map((answer, i) => {
               let testid = '';
               if (answer === correct) {
