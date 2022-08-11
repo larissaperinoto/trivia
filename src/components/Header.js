@@ -10,7 +10,7 @@ class Header extends Component {
     const { name, email, score } = this.props;
     return (
       <header className="header">
-        <img src={ logo } className="App-logo" alt="logo" />
+        <img src={ logo } className="App-logo-header" alt="logo" />
         <div className="header-player">
           <div className="area-header-player">
             <p className="h-player-name" data-testid="header-player-name">{ name }</p>
@@ -26,6 +26,7 @@ class Header extends Component {
             className="header-profile-picture"
             src={ `https://www.gravatar.com/avatar/${md5(email).toString()}` }
             alt="User"
+            height="55px"
           />
         </div>
       </header>

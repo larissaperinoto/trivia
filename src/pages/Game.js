@@ -121,57 +121,63 @@ class Game extends Component {
       clicked,
       index } = this.state;
     return (
-      <div>
+      <>
         <Header />
-        <p data-testid="question-category">{ category }</p>
-        <p data-testid="question-text">{ question }</p>
-        <div data-testid="answer-options">
-          { allAnswers.map((answer, i) => {
-            let testid = '';
-            if (answer === correct) {
-              testid = 'correct-answer';
-            } else {
-              testid = `wrong-answer-${i}`;
-            }
-            let classe = '';
-            if (clicked) {
-              if (testid === 'correct-answer') {
-                classe = 'correctAnswer';
-              } else { classe = 'incorrectAnswer'; }
-            }
-            return (
-              <button
-                key={ answer }
-                type="button"
-                data-testid={ testid }
-                className={ classe }
-                disabled={ isDisabled }
-                onClick={ (event) => this.handleClick(event) }
-              >
-                {answer}
-              </button>
-            );
-          }) }
+        <div className="game-area">
+          <div className="area-answers" data-testid="answer-options">
+            <p data-testid="question-category">{ category }</p>
+            <p data-testid="question-text">{ question }</p>
+            { allAnswers.map((answer, i) => {
+              let testid = '';
+              if (answer === correct) {
+                testid = 'correct-answer';
+              } else {
+                testid = `wrong-answer-${i}`;
+              }
+              let classe = '';
+              if (clicked) {
+                if (testid === 'correct-answer') {
+                  classe = 'correctAnswer';
+                } else { classe = 'incorrectAnswer'; }
+              }
+              return (
+                <button
+                  key={ answer }
+                  type="button"
+                  data-testid={ testid }
+                  className={ classe }
+                  disabled={ isDisabled }
+                  onClick={ (event) => this.handleClick(event) }
+                >
+                  {answer}
+                </button>
+              );
+            }) }
+          </div>
+          {/* <span>{ timer }</span> */}
+          {/* Alternativa, faz timer sumir quando tempo acaba ou resposta éselecionada */}
+          <div className="right-elements">
+            {(!isDisabled && !clicked)
+              && (
+                <span className="timer-area">{ timer }</span>
+              )}
+            {(clicked || isDisabled)
+             && (
+               <label htmlFor="btn-next">
+                 <button
+                   className="btn-next"
+                   type="button"
+                   data-testid="btn-next"
+                   onClick={ this.btnNext }
+                 >
+                   {'Next '}
+                 </button>
+               </label>)}
+          </div>
+          {logout && <Redirect to="/" />}
+          { index > maxQuestion && <Redirect to="/feedback" /> }
         </div>
-        {/* <span>{ timer }</span> */}
-        {/* Alternativa, faz timer sumir quando tempo acaba ou resposta é selecionada */}
-
-        {(!isDisabled && !clicked) && (<span>{ timer }</span>)}
-        {(clicked || isDisabled)
-         && (
-           <label htmlFor="btn-next">
-             <button
-               type="button"
-               data-testid="btn-next"
-               onClick={ this.btnNext }
-             >
-               {'Next '}
-             </button>
-           </label>)}
-
-        {logout && <Redirect to="/" />}
-        { index > maxQuestion && <Redirect to="/feedback" /> }
-      </div>
+      </>
     );
   }
 }

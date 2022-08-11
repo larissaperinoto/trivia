@@ -5,3 +5,74 @@
 .incorrectAnswer {
   border: 3px solid red;
 }
+
+.game-area {
+  align-items: center;
+  background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: antiquewhite;
+  display: flex;
+  flex-direction: row;
+  height: 84.8vh;
+  justify-content: space-around;
+}
+
+.area-answers {
+  align-items: center;
+  background-color: #0d577485;
+  border-radius: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  height: 60%;
+  justify-content: space-around;
+  padding: 20px;
+  text-align: center;
+  width: 45%;
+}
+
+button {
+  background-color: #9e3ced;
+  border-radius: 1em;
+  border-style: none;
+  color: white;
+  height: 50px;
+  margin: 10px;
+  width: 170px;
+}
+
+.right-elements {
+  align-items: center;
+  text-align: center;
+  width: 15%;
+}
+
+/* Botões do fedback junto */
+button .btn-next, .btn-ranking, .btn-play-again {
+  background-color: #9e3ced;
+  color: whitesmoke;
+  font-weight: 600;
+}
+
+.timer-area {
+  font-size: 38px;
+}
+
+.feedback-area {
+  align-items: center;
+  background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 64.5vh;
+  padding-top: 100px;
+}
+
+.feedback {
+  background-color: #0d577485;
+  border-radius: 1em;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}

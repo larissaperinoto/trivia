@@ -2,6 +2,40 @@ body {
   margin: 0;
 }
 
+.App-logo {
+  height: 60px;
+  justify-self: center;
+  pointer-events: none;
+  width: 190px;
+}
+
+@media ( prefers-reduced-motion : no-preference ) {
+
+  .App-logo {
+    animation: shake infinite 1.5s cubic-bezier(0.36, 1.07, 0.19, 0.97) both;
+  }
+}
+
+@keyframes shake {
+
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
 .login-area-geral {
   align-items: center;
   background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
@@ -14,6 +48,7 @@ body {
 }
 
 .login-area {
+  align-items: center;
   background-color: rgba(59, 59, 59, 0.575);
   border-radius: 1.5em;
   display: flex;
@@ -21,7 +56,7 @@ body {
   height: 40%;
   justify-content: space-between;
   padding: 25px;
-  width: 25%;
+  width: 35%;
 }
 
 .input-area {

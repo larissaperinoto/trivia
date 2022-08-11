@@ -1,55 +1,40 @@
-.App-logo {
-  height: 15vmin;
+.App-logo-header {
+  height: 60px;
   justify-self: center;
   pointer-events: none;
-}
-
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: shake infinite 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  }
-}
-
-@keyframes shake {
-
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
+  width: 190px;
 }
 
 .header {
+  align-items: center;
   background-color: #9e3ced;
   display: flex;
   justify-content: space-between;
   margin: 0;
-  padding: 10px;
+  padding: 5px;
 }
 
 .header-player {
   align-items: center;
+  background-color: #24c0ff;
+  border-radius: 1em;
   display: flex;
+  justify-content: space-around;
+  margin-right: 5px;
+  padding: 5px;
+  padding-right: 16px;
+  width: 200px;
 }
 
 .area-header-player {
-  align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: baseline;
 }
 
 .h-player-name, .h-player-score {
-  color: rgb(34, 34, 34);
+  color: white;
+  line-height: 1px;
   margin-right: 6px;
+  padding-bottom: 8px;
 }
