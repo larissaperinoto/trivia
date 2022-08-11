@@ -31,18 +31,25 @@
 }
 
 .header {
+  background-color: #9e3ced;
   display: flex;
   justify-content: space-between;
-  margin: 10px;
+  margin: 0;
+  padding: 10px;
 }
 
 .header-player {
   align-items: center;
   display: flex;
-  justify-self: left;
 }
 
-.header-player-name, .header-player-score {
+.area-header-player {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.h-player-name, .h-player-score {
   color: rgb(34, 34, 34);
   margin-right: 6px;
 }

@@ -12,8 +12,15 @@ class Header extends Component {
       <header className="header">
         <img src={ logo } className="App-logo" alt="logo" />
         <div className="header-player">
-          <p className="header-player-name" data-testid="header-player-name">{ name }</p>
-          <span className="header-player-score" data-testid="header-score">{ score }</span>
+          <div className="area-header-player">
+            <p className="h-player-name" data-testid="header-player-name">{ name }</p>
+            <span
+              className="h-player-score"
+              data-testid="header-score"
+            >
+              { `Pontuação: ${score}` }
+            </span>
+          </div>
           <img
             data-testid="header-profile-picture"
             className="header-profile-picture"

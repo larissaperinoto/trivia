@@ -55,55 +55,55 @@ class Login extends Component {
       <div className="login-area-geral">
         <div className="login-area">
           <img src={ logo } className="App-logo" alt="logo" />
-        <form className="input-area">
-          <label htmlFor="input-player-name">
-            <input
-              className="input-login-name"
-              data-testid="input-player-name"
-              type="text"
-              placeholder="Nome"
-              name="name"
-              onChange={ (event) => this.handleChange(event) }
-              value={ name }
-            />
-          </label>
-          <label htmlFor="input-gravatar-email">
-            <input
-              className="input-login-email"
-              data-testid="input-gravatar-email"
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={ (event) => this.handleChange(event) }
-              value={ email }
+          <form className="input-area">
+            <label htmlFor="input-player-name">
+              <input
+                className="input-login-name"
+                data-testid="input-player-name"
+                type="text"
+                placeholder="Nome"
+                name="name"
+                onChange={ (event) => this.handleChange(event) }
+                value={ name }
               />
-          </label>
-          <div className="btn-area">
-            <button
-              className={isDisabled ? 'input-btn-play' : 'btn-play'}
-              data-testid="btn-play"
-              type="button"
-              onClick={ this.handleClickLogin }
-              disabled={ isDisabled }
+            </label>
+            <label htmlFor="input-gravatar-email">
+              <input
+                className="input-login-email"
+                data-testid="input-gravatar-email"
+                type="email"
+                placeholder="Email"
+                name="email"
+                onChange={ (event) => this.handleChange(event) }
+                value={ email }
+              />
+            </label>
+            <div className="btn-area">
+              <button
+                className={ isDisabled ? 'input-btn-play' : 'btn-play' }
+                data-testid="btn-play"
+                type="button"
+                onClick={ this.handleClickLogin }
+                disabled={ isDisabled }
               >
-              Play
-            </button>
-            <button
-              className="input-btn-settings"
-              data-testid="btn-settings"
-              type="button"
-              onClick={ this.handleClickSettings }
+                Play
+              </button>
+              <button
+                className="input-btn-settings"
+                data-testid="btn-settings"
+                type="button"
+                onClick={ this.handleClickSettings }
               >
-              Configurações
-            </button>
-          </div>
-        </form>
-        {
-          redirectLogin && <Redirect to="/game-trivia" />
-        }
-        {
-          redirectSettings && <Redirect to="/settings" />
-        }
+                Configurações
+              </button>
+            </div>
+          </form>
+          {
+            redirectLogin && <Redirect to="/game-trivia" />
+          }
+          {
+            redirectSettings && <Redirect to="/settings" />
+          }
         </div>
       </div>
     );
