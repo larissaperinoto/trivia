@@ -18,7 +18,7 @@ class Header extends Component {
               className="h-player-score"
               data-testid="header-score"
             >
-              { `Pontuação: ${score}` }
+              { score }
             </span>
           </div>
           <img
