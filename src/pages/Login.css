@@ -5,6 +5,8 @@ body {
 .login-area-geral {
   align-items: center;
   background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
+  background-size: 100%;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -16,7 +18,8 @@ body {
   border-radius: 1.5em;
   display: flex;
   flex-direction: column;
-  height: 180px;
+  height: 40%;
+  width: 25%;
   justify-content: space-between;
   padding: 25px;
 }
@@ -28,16 +31,28 @@ body {
 }
 
 .input-login-name, .input-login-email {
+  border: 0.16em solid rgba(38, 99, 139, 0.966);
+  border-radius: 1em;
   color: rgb(34, 34, 34);
+  height: 23px;
   margin-bottom: 5px;
   text-align: center;
   width: 215px;
 }
 
-.input-btn-play, .input-btn-settings {
+.btn-play:hover {
+  background-color: rgba(0, 153, 255, 0.966);
+  color: rgb(27, 27, 27);
+  font-weight: 600;
+}
+
+.input-btn-play, .btn-play, .input-btn-settings {
+  border: 0.16em solid rgba(38, 99, 139, 0.966);
+  border-radius: 1em;
   color: rgb(46, 46, 46);
   font-size: 14px;
   font-weight: 500;
+  height: 25px;
   margin-left: 6px;
   margin-top: 2px;
   width: 108px;

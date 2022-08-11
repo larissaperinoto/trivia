@@ -80,7 +80,7 @@ class Login extends Component {
           </label>
           <div className="btn-area">
             <button
-              className="input-btn-play"
+              className={isDisabled ? 'input-btn-play' : 'btn-play'}
               data-testid="btn-play"
               type="button"
               onClick={ this.handleClickLogin }
