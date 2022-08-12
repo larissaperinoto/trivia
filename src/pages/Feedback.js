@@ -47,9 +47,8 @@ class Feedback extends Component {
             {assertions < spots
               ? <p className="feedback">Could be better...</p>
               : <p className="feedback">Well Done!</p>}
-
             <p>
-              Número de acertos ------------------------------
+              Número de acertos
               {' '}
               <span
                 data-testid="feedback-total-question"
@@ -59,7 +58,7 @@ class Feedback extends Component {
               {' '}
             </p>
             <p>
-              Sua pontuação é ----------------------------------
+              Sua pontuação é
               {' '}
               <span
                 data-testid="feedback-total-score"
@@ -71,7 +70,7 @@ class Feedback extends Component {
           <div className="btn-feedback">
             <button
               type="button"
-              id="btn-play-again"
+              className="btn-play-again"
               data-testid="btn-play-again"
               onClick={ () => this.handleClick() }
             >
@@ -79,6 +78,7 @@ class Feedback extends Component {
             </button>
             <Link to="ranking">
               <button
+                className="btn-ranking"
                 type="button"
                 data-testid="btn-ranking"
               >

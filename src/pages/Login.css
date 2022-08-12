@@ -56,7 +56,7 @@ body {
   height: 40%;
   justify-content: space-between;
   padding: 25px;
-  width: 35%;
+  width: 45%;
 }
 
 .input-area {
@@ -72,28 +72,56 @@ body {
   height: 23px;
   margin-bottom: 5px;
   text-align: center;
-  width: 215px;
+  width: 230px;
 }
 
 .btn-area {
+  align-items: baseline;
   display: flex;
+  margin-top: 2px;
   width: 100%;
 }
 
-.input-btn-play, .btn-play, .input-btn-settings {
-  border: 0.16em solid rgba(38, 99, 139, 0.966);
-  border-radius: 1em;
-  color: rgb(46, 46, 46);
-  font-size: 14px;
+.input-btn-play {
+  background-color: rgba(0, 153, 255, 0.966);
+  border: 0.16em none rgba(38, 99, 139, 0.966);
+  border-radius: 2em;
+  color: rgba(51, 51, 51, 0.493);
+  font-size: 15px;
   font-weight: 500;
-  height: 25px;
+  height: 30px;
+  width: 100px;
+}
+
+.input-btn-settings {
+  background-color: rgba(0, 153, 255, 0.966);
+  border: 0.16em none rgba(38, 99, 139, 0.966);
+  border-radius: 2em;
+  color: rgb(27, 27, 27);
+  font-size: 15px;
+  font-weight: 500;
+  height: 30px;
+  margin-left: 6px;
+  width: 130px;
+}
+
+.btn-play {
+  background-color: rgba(0, 153, 255, 0.966);
+  border: 0.16em none rgba(38, 99, 139, 0.966);
+  border-radius: 2em;
+  color: rgb(27, 27, 27);
+  font-size: 15px;
+  font-weight: 500;
+  height: 20px;
   margin-left: 6px;
   margin-top: 2px;
-  width: 108px;
+  width: 100px;
+}
+
+.input-btn-settings:hover {
+  font-weight: 600;
 }
 
 .btn-play:hover {
-  background-color: rgba(0, 153, 255, 0.966);
-  color: rgb(27, 27, 27);
   font-weight: 600;
 }

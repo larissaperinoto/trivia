@@ -136,7 +136,7 @@ class Game extends Component {
               } else {
                 testid = `wrong-answer-${i}`;
               }
-              let classe = '';
+              let classe = 'resposta';
               if (clicked) {
                 if (testid === 'correct-answer') {
                   classe = 'correctAnswer';
