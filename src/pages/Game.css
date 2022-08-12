@@ -27,6 +27,7 @@
 .question-area {
   display: flex;
   flex-direction: column;
+  font-family: 'Silkscreen', cursive;
   max-height: 70%;
   min-height: 50%;
   width: 90%;
@@ -102,6 +103,7 @@ button {
 
 .timer-area {
   font-size: 38px;
+  font-family: 'Silkscreen', cursive;
 }
 
 .feedback-area {
