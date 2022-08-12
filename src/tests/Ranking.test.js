@@ -24,7 +24,7 @@ describe('Verifica a renderização da página de Ranking', () => {
     }
 
     localStorage.setItem('ranking', JSON.stringify([initialStateMock2]));
-    renderWithRouterAndRedux(<App />, initialStateMock, '/feedback');
+    const { history } = renderWithRouterAndRedux(<App />, initialStateMock, '/feedback');
 
     userEvent.click(screen.getByRole('button', { name: /Ranking/i}));
 
@@ -41,11 +41,11 @@ describe('Verifica a renderização da página de Ranking', () => {
 
     const button = screen.getByRole("button", { name: /início/i });
     expect(button).toBeInTheDocument();
-    
 
     userEvent.click(button);
 
-    expect(screen.getByRole("button", { name: /play/i })).toBeInTheDocument();
-    expect(screen.getAllByRole("textbox").length).toBe(2);
+    const { location: { pathname } } = history;
+
+    expect(pathname).toBe('/');
   });
 });
