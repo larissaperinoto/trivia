@@ -30,13 +30,17 @@ class Game extends Component {
     };
   }
 
-  async componentDidMount() {
-    const data = await getQuestions();
-    this.setState({ data }, () => this.requestQuestions());
+  componentDidMount() {
+    this.reloadDataQuestions();
   }
 
   componentWillUnmount() {
     this.timerCount();
+  }
+
+  reloadDataQuestions = async () => {
+    const data = await getQuestions();
+    this.setState({ data }, () => this.requestQuestions());
   }
 
   requestQuestions = () => {
@@ -153,8 +157,6 @@ class Game extends Component {
             );
           }) }
         </div>
-        {/* <span>{ timer }</span> */}
-        {/* Alternativa, faz timer sumir quando tempo acaba ou resposta é selecionada */}
 
         {(!isDisabled && !clicked) && (<span>{ timer }</span>)}
         {(clicked || isDisabled)
