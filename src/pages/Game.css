@@ -147,7 +147,7 @@ button {
   display: flex;
   flex-flow: column;
   font-family: Silkscreen , cursive;
-  height: 100%;
+  height: 100vh;
   padding: 0;
 }
 

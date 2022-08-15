@@ -45,8 +45,8 @@ class Feedback extends Component {
         <div className="feedback-area">
           <div className="details-feedback">
             {assertions < spots
-              ? <p className="feedback">Could be better...</p>
-              : <p className="feedback">Well Done!</p>}
+              ? <p data-testid="feedback-text" className="feedback">Could be better...</p>
+              : <p data-testid="feedback-text" className="feedback">Well Done!</p>}
             <p>
               Número de acertos
               {' '}
