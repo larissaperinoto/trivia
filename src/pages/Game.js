@@ -30,13 +30,17 @@ class Game extends Component {
     };
   }
 
-  async componentDidMount() {
-    const data = await getQuestions();
-    this.setState({ data }, () => this.requestQuestions());
+  componentDidMount() {
+    this.reloadDataQuestions();
   }
 
   componentWillUnmount() {
     this.timerCount();
+  }
+
+  reloadDataQuestions = async () => {
+    const data = await getQuestions();
+    this.setState({ data }, () => this.requestQuestions());
   }
 
   requestQuestions = () => {
@@ -156,29 +160,23 @@ class Game extends Component {
               );
             }) }
           </div>
-          {/* <span>{ timer }</span> */}
-          {/* Alternativa, faz timer sumir quando tempo acaba ou resposta éselecionada */}
-          <div className="right-elements">
-            {(!isDisabled && !clicked)
-              && (
-                <span className="timer-area">{ timer }</span>
-              )}
-            {(clicked || isDisabled)
-             && (
-               <label htmlFor="btn-next">
-                 <button
-                   className="btn-next"
-                   type="button"
-                   data-testid="btn-next"
-                   onClick={ this.btnNext }
-                 >
-                   {'Next '}
-                 </button>
-               </label>)}
-          </div>
+        <div className="right-elements">
+          {(!isDisabled && !clicked) && (<span className="timer-area">{ timer }</span>)}
+          {(clicked || isDisabled)
+           && (
+             <label htmlFor="btn-next">
+               <button
+                 type="button"
+                 data-testid="btn-next"
+                 onClick={ this.btnNext }
+               >
+                 {'Next '}
+               </button>
+             </label>)}
           {logout && <Redirect to="/" />}
           { index > maxQuestion && <Redirect to="/feedback" /> }
         </div>
+      </div>
       </>
     );
   }

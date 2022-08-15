@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Feedback from '../pages/Feedback';
@@ -52,12 +52,18 @@ describe('Verifica a renderização do componente Feedback', () => {
     expect(screen.getByTestId('feedback-total-question').innerHTML).toBe('1');
   });
 
-  test('verifica se o botão Play Again é renderizado', () => {
-    const { history } = renderWithRouterAndRedux(<App />, {}, '/feedback');
+  test('Verifica se o botão Play Again é renderizado', () => {
+    const { history } = renderWithRouterAndRedux(<App />);
+    const { location: { pathname } } = history;
+
+    history.push('/feedback');
 
     const buttonPlayAgain = screen.getByRole("button", { name: /play again/i });
     expect(buttonPlayAgain).toBeInTheDocument();
     userEvent.click(buttonPlayAgain);
+
+    expect(pathname).toBe('/');
+
     expect(screen.getByRole("button", { name: /play/i })).toBeInTheDocument();
     expect(screen.getAllByRole("textbox").length).toBe(2);
   });
