@@ -9,15 +9,26 @@ class Header extends Component {
   render() {
     const { name, email, score } = this.props;
     return (
-      <header className="App">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <img
-          data-testid="header-profile-picture"
-          src={ `https://www.gravatar.com/avatar/${md5(email).toString()}` }
-          alt="User"
-        />
-        <p data-testid="header-player-name">{ name }</p>
-        <span data-testid="header-score">{ score }</span>
+      <header className="header">
+        <img src={ logo } className="App-logo-header" alt="logo" />
+        <div className="header-player">
+          <div className="area-header-player">
+            <p className="h-player-name" data-testid="header-player-name">{ name }</p>
+            <span
+              className="h-player-score"
+              data-testid="header-score"
+            >
+              { score }
+            </span>
+          </div>
+          <img
+            data-testid="header-profile-picture"
+            className="header-profile-picture"
+            src={ `https://www.gravatar.com/avatar/${md5(email).toString()}` }
+            alt="User"
+            height="55px"
+          />
+        </div>
       </header>
     );
   }

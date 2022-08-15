@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
+import './Game.css';
 
 class Feedback extends Component {
   componentDidMount() {
@@ -41,48 +42,51 @@ class Feedback extends Component {
     return (
       <>
         <Header />
-        <div data-testid="feedback-text">
-          {assertions < spots
-            ? <span>Could be better...</span>
-            : <span>Well Done!</span>}
-        </div>
-        <div>
-          <p>
-            Número de acertos:
-            {' '}
-            <span
-              data-testid="feedback-total-question"
+        <div className="feedback-area">
+          <div className="details-feedback">
+            {assertions < spots
+              ? <p data-testid="feedback-text" className="feedback">Could be better...</p>
+              : <p data-testid="feedback-text" className="feedback">Well Done!</p>}
+            <p>
+              Número de acertos
+              {' '}
+              <span
+                data-testid="feedback-total-question"
+              >
+                { assertions }
+              </span>
+              {' '}
+            </p>
+            <p>
+              Sua pontuação é
+              {' '}
+              <span
+                data-testid="feedback-total-score"
+              >
+                { score }
+              </span>
+            </p>
+          </div>
+          <div className="btn-feedback">
+            <button
+              type="button"
+              className="btn-play-again"
+              data-testid="btn-play-again"
+              onClick={ () => this.handleClick() }
             >
-              { assertions }
-            </span>
-            {' '}
-          </p>
-          <p>
-            Sua pontuação é:
-            {' '}
-            <span
-              data-testid="feedback-total-score"
-            >
-              { score }
-            </span>
-          </p>
+              Play Again
+            </button>
+            <Link to="ranking">
+              <button
+                className="btn-ranking"
+                type="button"
+                data-testid="btn-ranking"
+              >
+                Ranking
+              </button>
+            </Link>
+          </div>
         </div>
-        <button
-          type="button"
-          id="btn-play-again"
-          data-testid="btn-play-again"
-          onClick={ () => this.handleClick() }
-        >
-          Play Again
-        </button>
-        <Link to="ranking">
-          <button
-            type="button"
-            data-testid="btn-ranking"
-          >
-            Ranking
-          </button>
-        </Link>
       </>
     );
   }

@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+}
+
+.App-logo {
+  height: 60px;
+  justify-self: center;
+  pointer-events: none;
+  width: 190px;
+}
+
+@media ( prefers-reduced-motion : no-preference ) {
+
+  .App-logo {
+    animation: shake infinite 1.5s cubic-bezier(0.36, 1.07, 0.19, 0.97) both;
+  }
+}
+
+@keyframes shake {
+
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+.login-area-geral {
+  align-items: center;
+  background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
+  background-repeat: round;
+  background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.login-area {
+  align-items: center;
+  background-color: rgba(59, 59, 59, 0.575);
+  border-radius: 1.5em;
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  justify-content: space-between;
+  padding: 25px;
+  width: 45%;
+}
+
+.input-area {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-login-name, .input-login-email {
+  border: 0.16em solid rgba(38, 99, 139, 0.966);
+  border-radius: 1em;
+  color: rgb(34, 34, 34);
+  height: 23px;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 230px;
+}
+
+.btn-area {
+  align-items: baseline;
+  display: flex;
+  margin-top: 2px;
+  width: 100%;
+}
+
+.input-btn-play {
+  background-color: rgba(0, 153, 255, 0.966);
+  border: 0.16em none rgba(38, 99, 139, 0.966);
+  border-radius: 2em;
+  color: rgba(51, 51, 51, 0.493);
+  font-size: 15px;
+  font-weight: 500;
+  height: 30px;
+  width: 100px;
+}
+
+.input-btn-settings {
+  background-color: rgba(0, 153, 255, 0.966);
+  border: 0.16em none rgba(38, 99, 139, 0.966);
+  border-radius: 2em;
+  color: rgb(27, 27, 27);
+  font-size: 15px;
+  font-weight: 500;
+  height: 30px;
+  margin-left: 6px;
+  width: 130px;
+}
+
+.btn-play {
+  background-color: rgba(0, 153, 255, 0.966);
+  border: 0.16em none rgba(38, 99, 139, 0.966);
+  border-radius: 2em;
+  color: rgb(27, 27, 27);
+  font-size: 15px;
+  font-weight: 500;
+  height: 20px;
+  margin-left: 6px;
+  margin-top: 2px;
+  width: 100px;
+}
+
+.input-btn-settings:hover {
+  font-weight: 600;
+}
+
+.btn-play:hover {
+  font-weight: 600;
+}

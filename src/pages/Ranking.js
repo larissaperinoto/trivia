@@ -16,7 +16,7 @@ class Ranking extends React.Component {
     && JSON.parse(localStorageData)
       .sort((a, b) => b.score - a.score);
     return (
-      <div>
+      <div className="ranking-area">
         <h1 data-testid="ranking-title">Ranking</h1>
         <button
           type="button"
@@ -25,14 +25,30 @@ class Ranking extends React.Component {
         >
           Início
         </button>
-        <ul>
+        <ul className="lista-ranking">
           {localStorageData && rankingList.map((c, i) => (
-            <li key={ i }>
+            <li className="player-rank" key={ i }>
               <img src={ `https://www.gravatar.com/avatar/${md5(c.email).toString()}` } alt={ `Imagem de ${c.name}` } />
-              <p>Player:</p>
-              <p data-testid={ `player-name-${i}` }>{ c.name }</p>
-              <p>Score:</p>
-              <p data-testid={ `player-score-${i}` }>{ c.score }</p>
+              <div className="plyr-info">
+                <div className="plyr-info-name">
+                  <span>Player: </span>
+                  <span
+                    className="player-name"
+                    data-testid={ `player-name-${i}` }
+                  >
+                    { c.name }
+                  </span>
+                </div>
+                <div className="plyr-info-score">
+                  <span>Score:</span>
+                  <span
+                    className="player-score"
+                    data-testid={ `player-score-${i}` }
+                  >
+                    { c.score }
+                  </span>
+                </div>
+              </div>
             </li>))}
         </ul>
       </div>
