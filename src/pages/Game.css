@@ -136,3 +136,77 @@ button {
   padding: 15px;
   text-align: center;
 }
+
+/* ranking style */
+.ranking-area {
+  align-items: center;
+  background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
+  background-repeat: initial;
+  background-size: 100%;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  font-family: 'Silkscreen', cursive;
+  padding: 0;
+  height: 100%;
+}
+
+.lista-ranking {
+  align-items: center;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  max-height: 90%;
+  padding: 0;
+  justify-content: space-around;
+  width: 90%;
+}
+
+.player-rank {
+  align-items: center;
+  background-color: #9d3ced96;
+  border-radius: 1em;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding: 8px;
+  text-align: center;
+  width: 265px;
+}
+
+.plyr-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.plyr-info-score {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plyr-info-name {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.player-name, .player-score {
+  font-weight: 600;
+}
+
+/* Settings Style*/
+.config-page {
+  align-items: center;
+  background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
+  background-repeat: round;
+  background-size: 100%;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  font-family: 'Silkscreen', cursive;
+  padding: 0;
+  height: 100vh;
+}
