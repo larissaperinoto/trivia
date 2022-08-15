@@ -27,7 +27,7 @@
 .question-area {
   display: flex;
   flex-direction: column;
-  font-family: 'Silkscreen', cursive;
+  font-family: Silkscreen , cursive;
   max-height: 70%;
   min-height: 50%;
   width: 90%;
@@ -102,8 +102,8 @@ button {
 }
 
 .timer-area {
+  font-family: Silkscreen , cursive;
   font-size: 38px;
-  font-family: 'Silkscreen', cursive;
 }
 
 .feedback-area {
@@ -146,19 +146,19 @@ button {
   color: white;
   display: flex;
   flex-flow: column;
-  font-family: 'Silkscreen', cursive;
-  padding: 0;
+  font-family: Silkscreen , cursive;
   height: 100%;
+  padding: 0;
 }
 
 .lista-ranking {
   align-items: center;
-  list-style: none;
   display: flex;
   flex-flow: column;
+  justify-content: space-around;
+  list-style: none;
   max-height: 90%;
   padding: 0;
-  justify-content: space-around;
   width: 90%;
 }
 
@@ -197,7 +197,7 @@ button {
   font-weight: 600;
 }
 
-/* Settings Style*/
+/* Settings Style */
 .config-page {
   align-items: center;
   background-image: url('https://i0.wp.com/www.coliseugeek.com.br/wp-content/uploads/2021/07/Papel-de-parede-gamer-4k-para-seu-pc-15-1024x576.png?resize=880%2C495');
@@ -206,7 +206,7 @@ button {
   color: white;
   display: flex;
   flex-flow: column;
-  font-family: 'Silkscreen', cursive;
-  padding: 0;
+  font-family: Silkscreen , cursive;
   height: 100vh;
+  padding: 0;
 }

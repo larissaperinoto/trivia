@@ -160,23 +160,23 @@ class Game extends Component {
               );
             }) }
           </div>
-        <div className="right-elements">
-          {(!isDisabled && !clicked) && (<span className="timer-area">{ timer }</span>)}
-          {(clicked || isDisabled)
-           && (
-             <label htmlFor="btn-next">
-               <button
-                 type="button"
-                 data-testid="btn-next"
-                 onClick={ this.btnNext }
-               >
-                 {'Next '}
-               </button>
-             </label>)}
-          {logout && <Redirect to="/" />}
-          { index > maxQuestion && <Redirect to="/feedback" /> }
+          <div className="right-elements">
+            {(!isDisabled && !clicked) && (<span className="timer-area">{ timer }</span>)}
+            {(clicked || isDisabled)
+             && (
+               <label htmlFor="btn-next">
+                 <button
+                   type="button"
+                   data-testid="btn-next"
+                   onClick={ this.btnNext }
+                 >
+                   {'Next '}
+                 </button>
+               </label>)}
+            {logout && <Redirect to="/" />}
+            { index > maxQuestion && <Redirect to="/feedback" /> }
+          </div>
         </div>
-      </div>
       </>
     );
   }
